@@ -34,7 +34,7 @@ require('./config/express')(app);
 require('./routes')(app);
 
 // Start monitoring
-setInterval(monitor.monitor, 1000);
+setInterval(monitor.monitor, 10000);
 
 // Start server
 server.listen(config.port, config.ip, function () {

@@ -33,6 +33,7 @@ require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);
 
+monitor.monitor();
 // Start monitoring
 setInterval(monitor.monitor, 10000);
 

@@ -12,32 +12,60 @@ global.detectors = [];
 exports.monitor = function() {
 
   if (!global.detectors || global.detectors.length == 0) {
-    request({
-        url: URL_PROCESSING + SUBURL_DETECTOR_REGISTRY,
-        json: true
-      },
-      function (error, response, body) {
-        if (error) {
-          console.log(error);
+    getDetectorsCredentials(URL_PROCESSING + SUBURL_DETECTOR_REGISTRY, function (error, data) {
+      if (error) {
+        return;
+      }
+      global.detectors = data;
+      //console.log("============================================================");
+      //console.log("Detectors Credentials:");
+      //console.log(data);
+      //console.log("============================================================");
+      getDetectorsStatus(global.detectors, function (err, statuses) {
+        if (err) {
           return;
         }
-        global.detectors = body;
-        console.log(global.detectors);
+        global.detectors = statuses;
       });
+    });
     return;
   }
 
-  getDetectorStatuses();
+  getDetectorsStatus(global.detectors, function (err, statuses) {
+    if (err) {
+      return;
+    }
+    global.detectors = statuses;
+  });
 };
 
-function getDetectorStatuses() {
-  if (!global.detectors || global.detectors.length == 0) {
-    return;
+function getDetectorsCredentials(url2req, callback) {
+  request({
+      url: url2req,
+      json: true
+    },
+    function (error, response, body) {
+      if (error) {
+        console.log(error);
+        return callback(error, null);
+      }
+      return callback(null, body);
+    });
+}
+
+function getDetectorsStatus(detectorsCred, callback) {
+  if (!detectorsCred || detectorsCred.length == 0) {
+    return callback(null, detectorsCred);
   }
 
-  _.forEach(global.detectors, function (detector) {
+  let detectorsStat = _.clone(detectorsCred);
+
+  _.forEach(detectorsStat, function (detector, detectorInd) {
     ping.sys.probe(detector.ip, function(isAlive){
       detector.isAlive = isAlive;
+      if (detectorInd === detectorsStat.length - 1) {
+        return callback(null, detectorsStat);
+      }
     });
   });
 

@@ -44,8 +44,8 @@
   align-items: flex-start;
   justify-content: flex-start;
 
-//  overflow-y: auto;
-//  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 
@@ -102,7 +102,6 @@
 .detector-panel-wrapper {
   width: 32%;
   height: 46%;
-  background: green;
 }
 
 .detector-panel {
@@ -119,6 +118,26 @@
 
 .detector-title, .detector-address {
   flex: none;
+}
+
+.detector-title {
+  .medium({
+    font-size: large !important;
+  });
+
+  .small({
+    font-size: medium !important;
+  });
+}
+
+.detector-address {
+  .medium({
+    font-size: small !important;
+  });
+
+  .small({
+    font-size: x-small !important;
+  });
 }
 
 .detector-status-bad {

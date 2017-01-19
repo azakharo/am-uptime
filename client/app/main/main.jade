@@ -4,8 +4,8 @@
   .page-content
     .detector-panel-wrapper.pl3.pt3(ng-repeat="detector in detectors | orderBy:'id'")
       .detector-panel.w100.h100(ng-class="{'detector-status-bad': !detector.isAlive, 'detector-status-warn': detector.isAlive && !detector.isRestApiAvail, 'detector-status-ok': detector.isAlive && detector.isRestApiAvail}")
-        .text-xlarge {{ detector.id }}
-        .text-large {{ detector.ip }}
+        .detector-title.text-xxlarge {{ detector.id }}
+        .detector-address.text-large {{ detector.ip }}
   footer.page-footer.plr1
     .itc-logo-container
       a.itc-logo(href='http://sarov-itc.ru/', target="_blank")

@@ -63,10 +63,42 @@ function getDetectorsStatus(detectorsCred, callback) {
   _.forEach(detectorsStat, function (detector, detectorInd) {
     ping.sys.probe(detector.ip, function(isAlive){
       detector.isAlive = isAlive;
-      if (detectorInd === detectorsStat.length - 1) {
-        return callback(null, detectorsStat);
+      if (isAlive) {
+        getDetectorInfo(detector.ip, detector.login, detector.password, function (error, info) {
+          detector.isRestApiAvail = error === null;
+
+          if (detectorInd === detectorsStat.length - 1) {
+            return callback(null, detectorsStat);
+          }
+
+        });
+      }
+      else {
+        detector.isRestApiAvail = false;
+
+        if (detectorInd === detectorsStat.length - 1) {
+          return callback(null, detectorsStat);
+        }
       }
     });
   });
 
+}
+
+function getDetectorInfo(detectorIP, username, passwd, callback) {
+  request({
+      url: `http://${detectorIP}/api/info`,
+      json: true,
+      'auth': {
+        'user': username,
+        'pass': passwd
+      }
+    },
+    function (error, response, body) {
+      if (error) {
+        //console.log(error);
+        return callback(error, null);
+      }
+      return callback(null, body);
+    });
 }

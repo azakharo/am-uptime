@@ -3,6 +3,10 @@
 @blue-color: #162054;
 @white-color: #f0f0f0;
 
+@detector-status-ok:   #90EE90;
+@detector-status-warn: #FFA500;
+@detector-status-bad:  #F08080;
+
 .main-container {
   display: flex;
   flex-flow: column nowrap;
@@ -34,10 +38,14 @@
   flex: 1;
 
   background: @black-color;
-  color: @white-color;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+//  overflow-y: auto;
+//  overflow-x: hidden;
 }
 
 
@@ -91,6 +99,27 @@
 //////////////////////////////////////////////////////
 // Page main area
 
+.detector-panel-wrapper {
+  width: 32%;
+  height: 46%;
+  background: green;
+}
+
+.detector-panel {
+  color: @black-color;
+}
+
+.detector-status-bad {
+  background: @detector-status-bad;
+}
+
+.detector-status-warn {
+  background: @detector-status-warn;
+}
+
+.detector-status-ok {
+  background: @detector-status-ok;
+}
 
 // Page main area
 //////////////////////////////////////////////////////

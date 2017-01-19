@@ -1,39 +1,96 @@
-.thing-form {
-  margin: 20px 0;
+// Colors
+@black-color: #000618;
+@blue-color: #162054;
+@white-color: #f0f0f0;
+
+.main-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
+.page-hdr, .page-footer {
+  flex: none;
 }
 
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.page-hdr *, .page-footer * {
+  color: @white-color;
 }
 
-#banner__img {
-  width: 64px;
-  height: 64px;
+.page-footer {
+  background: @blue-color;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.hero-unit {
-    position: relative;
-    padding: 30px 15px;
-    color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+.page-content {
+  flex: 1;
+
+  background: @black-color;
+  color: @white-color;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 70px;
-    border-top: 1px solid #E5E5E5;
+
+//*************************************
+// Header
+
+.page-hdr {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: center;
+
+  background: @blue-color;
+  color: #ffffff;
 }
 
-.navbar-text {
-    margin-left: 15px;
+.page-title {
+  flex: none;
+
+  .medium({
+    font-size: large !important;
+  });
+
+  .small({
+    font-size: medium !important;
+  });
 }
+
+// Header
+//*************************************
+
+
+//==========================================
+//// Footer
+
+.itc-logo-container {
+  flex: none;
+}
+
+.itc-logo {
+  height: 38px;
+
+  font-size: 18px;
+  line-height: 20px;
+}
+
+// Footer
+//==========================================
+
+
+//////////////////////////////////////////////////////
+// Page main area
+
+
+// Page main area
+//////////////////////////////////////////////////////

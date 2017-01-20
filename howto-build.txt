@@ -1,0 +1,21 @@
+﻿Prerequisites:
+* Node.js, preferred 6.9.4
+* MongoDB, preferred >= 3. Actually not used, but left for future use.
+
+Intall Grunt:
+npm install -g grunt-cli
+
+Steps to build the application:
+* git clone this repo.
+* cd into the cloned repo.
+* npm install
+* bower install
+* grunt build
+After the building finishes you can find the result into the 'dist' sub-folder.
+
+To run the application which was built:
+* run the krik-post-processing service. This app depends on it, since it gets detectors credentials from there.
+* cd dist
+* set NODE_ENV=production
+* node server\app.js
+* open browser at http://127.0.0.1:8080
